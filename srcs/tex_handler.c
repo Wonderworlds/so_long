@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_event.c                                        :+:      :+:    :+:   */
+/*   tex_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/26 17:48:56 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/05/26 16:04:18 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/05/26 18:10:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	win_close_key(int keycode, t_vars *vars)
+int	display_tex(t_vars **vars, char *path, int tex_width, int tex_height)
 {
-	if (keycode == EVENT_ESC)
-	{
-		mlx_loop_end(vars->mlx);
-		return (-1);
-	}
-	return (0);
-}
 
-int	e_key_down(int keycode, t_vars **vars)
-{
-	ft_printf("\nkeycode : %i", keycode);
-	if (keycode == EVENT_ESC)
+
+	ft_printf("\npath = %s", path);
+	(*vars)->sprite = mlx_xpm_file_to_image((*vars)->mlx, path, &tex_width, &tex_height);
+	if (!(*vars)->sprite)
 	{
-		mlx_loop_end((*vars)->mlx);
+		ft_printf("\n img load fail");
+		return (0);
 	}
-	return (0);
+	mlx_put_image_to_window((*vars)->mlx, (*vars)->win, (*vars)->sprite, 300, 300);
+	return (1);
 }

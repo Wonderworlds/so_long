@@ -6,16 +6,16 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/25 14:10:06 by fmauguin          #+#    #+#              #
-#    Updated: 2022/05/26 13:16:38 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/05/26 17:04:59 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_PATH	=	srcs/
-SRCS_FILES	=	test.c
+SRCS_FILES	=	test.c color_handler.c key_event.c mouse_event.c tex_handler.c
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
 OBJS		=	$(SRCS:%.c=%.o)
 NOBJS		=	$(SRCS:%.c=%.o)
-INCLUDE		=	include/
+INCLUDE		=	includes/
 LIBFT_PATH	=	libft/
 MLX_PATH	=	minilibx-linux/
 LIBFT		=	libft.a

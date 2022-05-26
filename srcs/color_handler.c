@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:37:07 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/26 16:01:32 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:28:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
 
 static void	square_color(t_vars *vars, int start, int end, int color)
 {
@@ -34,6 +35,9 @@ static void	square_color(t_vars *vars, int start, int end, int color)
 
 int	rainbow(t_vars *vars)
 {
+	vars->img.img = mlx_new_image(vars->mlx, 500, 500);
+	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
+			&vars->img.line_length, &vars->img.endian);
 	if (!ft_strncmp(vars->img.state, "RED", ft_strlen(vars->img.state)))
 	{
 		square_color(vars, 100, 400, 0x000000FF);
