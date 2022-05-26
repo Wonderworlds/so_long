@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/26 18:06:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 00:23:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define SO_LONG_H
 
 # include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include <mlx.h>
+
 # include "../libft/Include/libft.h"
 
 # define EVENT_W 119
@@ -23,33 +26,44 @@
 # define EVENT_D 100
 # define EVENT_ESC 65307
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	char	*state;
-}				t_data;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-typedef struct s_vars {
+# define HEIGHT 50
+# define WIDTH 50
+
+typedef struct s_solong {
 	void	*mlx;
 	void	*win;
-	void	*sprite;
-}				t_vars;
+	char	**map;
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+	void	*bg;
+	void	*chest;
+	void	*exit;
+	void	*wall;
+	void	*player[8];
+	void	*enemy[4];
+}				t_solong;
+
+char    *read_fd(int fd);
 
 //COLOR
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		rainbow(t_vars *vars);
+int		rainbow(t_solong *vars);
 //TEXTURES
-int		display_tex(t_vars **vars, char *path, int tex_width, int tex_height);
+int	ft_init_tex(t_solong **vars);
+int	ft_init_img(t_solong **vars);
+
 //EVENTS
 //KEY
-int		e_key_down(int keycode, t_vars **vars);
+int		e_key_down(int keycode, t_solong **vars);
 //MOUSE
 //WINDOW
-int		ft_close(t_vars **vars, int x);
-int		red_cross_close(t_vars **vars);
+int		ft_close(t_solong **vars);
+int		red_cross_close(t_solong **vars);
 
 
 #endif

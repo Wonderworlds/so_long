@@ -6,13 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:36:20 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/26 17:49:59 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/26 21:34:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	red_cross_close(t_vars **vars)
+int	red_cross_close(t_solong **vars)
 {
 	mlx_loop_end((*vars)->mlx);
 	return (0);
