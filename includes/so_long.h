@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 11:43:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:21:29 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 
 # define HEIGHT 50
 # define WIDTH 50
+# define ANIM_RATE 12000
+# define MOVE_ENEMY 120000
 
 typedef struct s_solong {
 	void	*mlx;
@@ -39,30 +41,40 @@ typedef struct s_solong {
 	char	**map;
 	int		x;
 	int		y;
+	int		mult;
 	int		width;
 	int		height;
 	int		count;
+	int		c_count;
+	int		anim_count;
+	int		anim_player;
+	int		anim_enemy;
+	int		p_pos[2];
+	int		e_pos[2];
 	void	*bg;
 	void	*chest;
 	void	*exit;
 	void	*wall;
 	void	*player[8];
 	void	*enemy[4];
-	void	*cd[9];
+	void	*cd[10];
 }				t_solong;
 
 char    *read_fd(int fd);
-int	ft_push_cd(t_solong **vars, int count);
+int		ft_push_cd(t_solong **vars, int count);
 
 //COLOR
 int		rainbow(t_solong *vars);
 //TEXTURES
 int	ft_init_tex(t_solong **vars);
 int	ft_init_img(t_solong **vars);
-
+//ANIM
+int ft_anim(t_solong **vars);
 //EVENTS
 //KEY
 int		e_key_down(int keycode, t_solong **vars);
+int	ft_move_p(t_solong **vars, int x, int y);
+
 //MOUSE
 //WINDOW
 int		ft_close(t_solong **vars);

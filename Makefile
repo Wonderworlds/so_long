@@ -6,13 +6,13 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/25 14:10:06 by fmauguin          #+#    #+#              #
-#    Updated: 2022/05/27 00:24:08 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/05/27 16:28:42 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_PATH	=	srcs/
-SRCS_FILES	=	so_long.c key_event.c mouse_event.c tex_handler.c \
-				ft_map_check.c ft_init_xpm.c ft_init_img.c
+SRCS_FILES	=	so_long.c key_event.c mouse_event.c \
+				ft_map_check.c ft_init_xpm.c ft_init_img.c ft_anim.c
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
 OBJS		=	$(SRCS:%.c=%.o)
 NOBJS		=	$(SRCS:%.c=%.o)

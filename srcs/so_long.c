@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 11:34:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:30:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@ int	main(int ac, char **av)
 		i++;
 	vars->y = i;
 	vars->count = 0;
+	vars->mult = 50;
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIDTH * vars->x,
 				HEIGHT * vars->y, "so_long");
 	ft_init_tex(&vars);
 	ft_init_img(&vars);
+	vars->anim_count = 0;
+	vars->anim_enemy = 0;
+	vars->anim_player = 0;
 	mlx_key_hook(vars->win, e_key_down, &vars);
 	mlx_hook(vars->win, 17, 1L << 17, red_cross_close, &vars);
-	//mlx_loop_hook(vars.mlx, render_next_frame, &img);
+	mlx_loop_hook(vars->mlx, ft_anim, &vars);
 	mlx_loop(vars->mlx);
 	ft_close(&vars);
 	free(vars);
