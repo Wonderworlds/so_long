@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 15:30:42 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:54:50 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_close(t_solong **vars)
 {
+	ft_printf(COLOR_YELLOW "Steps : %i!" COLOR_YELLOW,
+			(*vars)->count);
 	mlx_destroy_window((*vars)->mlx, (*vars)->win);
 	mlx_destroy_display((*vars)->mlx);
 	free((*vars)->mlx);
@@ -41,12 +43,14 @@ int	main(int ac, char **av)
 	vars->y = i;
 	vars->count = 0;
 	vars->mult = 50;
+	vars->c_count = 0;
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIDTH * vars->x,
 				HEIGHT * vars->y, "so_long");
 	ft_init_tex(&vars);
 	ft_init_img(&vars);
 	vars->anim_count = 0;
+	vars->enemy_count = 0;
 	vars->anim_enemy = 0;
 	vars->anim_player = 0;
 	mlx_key_hook(vars->win, e_key_down, &vars);

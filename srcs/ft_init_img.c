@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 00:13:53 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 16:06:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:31:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_push_cd(t_solong **vars, int count)
 				(*vars)->cd[num[i] - '0'], 22 * i , 0);
 		i++;
 	}
+	ft_printf(COLOR_YELLOW "\r%i" COLOR_YELLOW, (*vars)->count);
 	free(num);
 	return (1);
 }
@@ -40,13 +41,12 @@ int	ft_push_img(t_solong **vars, char c, int x, int y)
 	if (c == 'E')
 		mlx_put_image_to_window((*vars)->mlx, (*vars)->win, (*vars)->exit, x * WIDTH, y * HEIGHT);
 	if (c == 'C')
-		mlx_put_image_to_window((*vars)->mlx, (*vars)->win, (*vars)->chest,x * WIDTH, y * HEIGHT);
-	if (c == 'N')
 	{
-		mlx_put_image_to_window((*vars)->mlx, (*vars)->win, (*vars)->enemy[0], x * WIDTH, y * HEIGHT);
-		(*vars)->e_pos[0] = x;
-		(*vars)->e_pos[1] = y;
+		(*vars)->c_count++;
+		mlx_put_image_to_window((*vars)->mlx, (*vars)->win, (*vars)->chest,x * WIDTH, y * HEIGHT);
 	}
+	if (c == 'N')
+		mlx_put_image_to_window((*vars)->mlx, (*vars)->win, (*vars)->enemy[0], x * WIDTH, y * HEIGHT);
 	if (c == 'P')
 	{
 		mlx_put_image_to_window((*vars)->mlx, (*vars)->win, (*vars)->player[0], x * WIDTH, y * HEIGHT);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 16:21:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 18:57:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include <mlx.h>
 
 # include "../libft/Include/libft.h"
+
+# define COLOR_RED     "\x1b[31m"
+# define COLOR_GREEN   "\x1b[32m"
+# define COLOR_YELLOW  "\x1b[33m"
 
 # define EVENT_W 119
 # define EVENT_A 97
@@ -47,10 +51,10 @@ typedef struct s_solong {
 	int		count;
 	int		c_count;
 	int		anim_count;
+	int		enemy_count;
 	int		anim_player;
 	int		anim_enemy;
 	int		p_pos[2];
-	int		e_pos[2];
 	void	*bg;
 	void	*chest;
 	void	*exit;
@@ -59,6 +63,12 @@ typedef struct s_solong {
 	void	*enemy[4];
 	void	*cd[10];
 }				t_solong;
+
+typedef struct s_coord
+{
+	int	x;
+	int	y;
+}				t_coord;
 
 char    *read_fd(int fd);
 int		ft_push_cd(t_solong **vars, int count);
@@ -73,7 +83,8 @@ int ft_anim(t_solong **vars);
 //EVENTS
 //KEY
 int		e_key_down(int keycode, t_solong **vars);
-int	ft_move_p(t_solong **vars, int x, int y);
+int		ft_move_p(t_solong **vars, int x, int y);
+int 	ft_move_npc(t_solong **vars);
 
 //MOUSE
 //WINDOW
