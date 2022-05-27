@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 18:57:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 23:23:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct s_solong {
 	char	**map;
 	int		x;
 	int		y;
-	int		mult;
 	int		width;
 	int		height;
 	int		count;
@@ -70,26 +69,17 @@ typedef struct s_coord
 	int	y;
 }				t_coord;
 
-char    *read_fd(int fd);
+char	*read_fd(int fd);
 int		ft_push_cd(t_solong **vars, int count);
-
-//COLOR
-int		rainbow(t_solong *vars);
-//TEXTURES
-int	ft_init_tex(t_solong **vars);
-int	ft_init_img(t_solong **vars);
-//ANIM
-int ft_anim(t_solong **vars);
-//EVENTS
-//KEY
+int		ft_close(t_solong **vars);
+int		ft_init(t_solong **vars, char *path);
+int		ft_init_tex(t_solong **vars);
+int		ft_init_img(t_solong **vars);
+int		ft_anim(t_solong **vars);
 int		e_key_down(int keycode, t_solong **vars);
 int		ft_move_p(t_solong **vars, int x, int y);
-int 	ft_move_npc(t_solong **vars);
-
-//MOUSE
-//WINDOW
+int		ft_move_npc(t_solong **vars);
 int		ft_close(t_solong **vars);
 int		red_cross_close(t_solong **vars);
-
 
 #endif

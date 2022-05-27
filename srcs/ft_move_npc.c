@@ -6,14 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 17:16:50 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 19:27:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 22:45:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-static int  ft_check_npc(t_solong **vars, int x, int y)
+static int	ft_check_npc(t_solong **vars, int x, int y)
 {
 	if ((*vars)->map[x][y] == '1')
 		return (0);
@@ -25,19 +24,19 @@ static int  ft_check_npc(t_solong **vars, int x, int y)
 		return (0);
 	if ((*vars)->map[x][y] == 'P')
 	{
-		ft_printf(COLOR_RED "DEATH!\n" COLOR_RED);
+		ft_printf(COLOR_RED "\rDEATH!\n" COLOR_RED);
 		mlx_loop_end((*vars)->mlx);
 		return (0);
 	}
 	return (1);
 }
 
-static int ft_dir_npc(t_solong **vars, int x, int y)
+static int	ft_dir_npc(t_solong **vars, int x, int y)
 {
 	int	i;
 
 	i = 0;
-    if (ft_check_npc(vars, x, y + 1))
+	if (ft_check_npc(vars, x, y + 1))
 		(*vars)->map[x][y + 1] = 'N';
 	else
 	{
@@ -52,15 +51,15 @@ static int ft_dir_npc(t_solong **vars, int x, int y)
 	}
 	(*vars)->map[x][y] = '0';
 	mlx_put_image_to_window((*vars)->mlx, (*vars)->win,
-			(*vars)->bg, y * WIDTH, x * HEIGHT);
+		(*vars)->bg, y * WIDTH, x * HEIGHT);
 	return (0);
 }
 
-int ft_move_npc(t_solong **vars)
+int	ft_move_npc(t_solong **vars)
 {
-    int	i;
-	int	j;
-	int	c;
+	int		i;
+	int		j;
+	int		c;
 	t_coord	enemy[1000];
 
 	c = 0;
@@ -79,5 +78,5 @@ int ft_move_npc(t_solong **vars)
 	}
 	while (--c >= 0)
 		ft_dir_npc(vars, enemy[c].x, enemy[c].y);
-    return (0);
+	return (0);
 }
