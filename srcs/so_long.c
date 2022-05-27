@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 00:23:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:34:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int ac, char **av)
 	while (vars->map[i])
 		i++;
 	vars->y = i;
+	vars->count = 0;
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIDTH * vars->x,
 				HEIGHT * vars->y, "so_long");

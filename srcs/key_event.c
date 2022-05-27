@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/26 22:13:32 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:44:25 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ int	e_key_down(int keycode, t_solong **vars)
 	}
 	if (keycode == EVENT_W)
 	{
-		mlx_loop_end((*vars)->mlx);
+		ft_push_cd(vars, ++(*vars)->count);
 	}
 	if (keycode == EVENT_A)
 	{
-		mlx_loop_end((*vars)->mlx);
+		ft_push_cd(vars, ++(*vars)->count);
 	}
 	if (keycode == EVENT_S)
 	{
-		mlx_loop_end((*vars)->mlx);
+		ft_push_cd(vars, ++(*vars)->count);
 	}
 	if (keycode == EVENT_D)
 	{
-		mlx_loop_end((*vars)->mlx);
+		ft_push_cd(vars, ++(*vars)->count);
 	}
 	return (0);
 }

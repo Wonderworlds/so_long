@@ -6,11 +6,26 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 00:13:53 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 00:30:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:47:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+int	ft_push_cd(t_solong **vars, int count)
+{
+	char	*num;
+	int		i;
+
+	i = 0;
+	num = ft_itoa((*vars)->count);
+	if (!num)
+		return (0);
+	while(num[i])
+	{
+		i++;
+	}
+	free(num);
+}
 
 int	ft_push_img(t_solong **vars, char c, int x, int y)
 {

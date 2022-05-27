@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 00:23:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:43:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,18 @@ typedef struct s_solong {
 	int		y;
 	int		width;
 	int		height;
+	int		count;
 	void	*bg;
 	void	*chest;
 	void	*exit;
 	void	*wall;
 	void	*player[8];
 	void	*enemy[4];
+	void	*cd[9];
 }				t_solong;
 
 char    *read_fd(int fd);
+int	ft_push_cd(t_solong **vars, int count);
 
 //COLOR
 int		rainbow(t_solong *vars);

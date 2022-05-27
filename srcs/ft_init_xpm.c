@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 23:45:03 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 00:11:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:32:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,39 @@ static int ft_init_enemy(t_solong **vars)
 	return (1);
 }
 
+static int ft_init_cd(t_solong **vars)
+{
+	int	i;
+	int	w;
+	int	h;
+
+	w = 22;
+	h = 24;
+	(*vars)->cd[0] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/1.xpm", w, h);
+	(*vars)->cd[1] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/2.xpm", w, h);
+	(*vars)->cd[2] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/3.xpm",w, h);
+	(*vars)->cd[3] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/4.xpm",w, h);
+	(*vars)->cd[4] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/5.xpm", w, h);
+	(*vars)->cd[5] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/6.xpm", w, h);
+	(*vars)->cd[6] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/7.xpm", w, h);
+	(*vars)->cd[7] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/8.xpm", w, h);
+	(*vars)->cd[8] = mlx_xpm_file_to_image((*vars)->mlx,
+			"./textures/cd/9.xpm", w, h);
+	i = 0;
+	while (i < 9)
+		if (!(*vars)->cd[i++])
+			return (0);
+	return (1);
+}
+
 int	ft_init_tex(t_solong **vars)
 {
 	if (!ft_init_bg(vars))
@@ -80,6 +113,8 @@ int	ft_init_tex(t_solong **vars)
 	if (!ft_init_player(vars))
 		return (0);
 	if (!ft_init_enemy(vars))
+		return (0);
+	if (!ft_init_cd(vars))
 		return (0);
 	return (1);
 }
