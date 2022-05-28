@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/28 14:43:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:19:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_coord
 
 char	*read_fd(int fd);
 int		ft_push_cd(t_solong **vars, int count);
-int		ft_close(t_solong **vars);
+int		ft_close(t_solong **vars, char type);
 int		ft_init(t_solong **vars, char *path);
 int		ft_init_tex(t_solong **vars);
 int		ft_init_img(t_solong **vars);
@@ -80,7 +80,6 @@ int		ft_anim(t_solong **vars);
 int		e_key_down(int keycode, t_solong **vars);
 int		ft_move_p(t_solong **vars, int x, int y);
 int		ft_move_npc(t_solong **vars);
-int		ft_close(t_solong **vars);
 int		red_cross_close(t_solong **vars);
 int		ft_valid_map(t_solong **vars);
 

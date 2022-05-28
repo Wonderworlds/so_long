@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:39:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/28 16:38:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:26:21 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,21 @@ static int	ft_close_img(t_solong **vars, int i)
 	return (0);
 }
 
-int	ft_close(t_solong **vars)
+int	ft_close(t_solong **vars, char type)
 {
 	int	i;
 
 	ft_close_img(vars, -1);
 	i = 0;
-	while ((*vars)->map[i])
-		free_struct(NULL, (*vars)->map[i++], 'P');
+	if ((*vars)->map)
+		while ((*vars)->map[i])
+			free_struct(NULL, (*vars)->map[i++], 'P');
 	free_struct(NULL, (*vars)->map, 'P');
 	free_struct(NULL, (*vars)->str, 'P');
 	free_struct((*vars)->mlx, (*vars)->win, 'W');
 	free_struct((*vars)->mlx, NULL, 'M');
-	ft_printf(COLOR_YELLOW "\rSteps : %i\n" COLOR_YELLOW, (*vars)->count);
+	if (type != 'E')
+		ft_printf(COLOR_YELLOW "\rSteps : %i\n" COLOR_YELLOW, (*vars)->count);
 	free_struct(NULL, (*vars)->mlx, 'P');
 	free_struct(NULL, (*vars), 'P');
 	return (0);

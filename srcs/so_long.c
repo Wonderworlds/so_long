@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/28 16:21:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:20:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	main(int ac, char **av)
 		return (0);
 	if (!ft_init(&vars, av[1]))
 	{
-		ft_close(&vars);
+		ft_close(&vars, 'E');
 		return (0);
 	}
 	mlx_key_hook(vars->win, e_key_down, &vars);
 	mlx_hook(vars->win, 17, 1L << 17, red_cross_close, &vars);
 	mlx_loop_hook(vars->mlx, ft_anim, &vars);
 	mlx_loop(vars->mlx);
-	ft_close(&vars);
+	ft_close(&vars, 'W');
 	return (1);
 }

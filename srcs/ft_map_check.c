@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 22:55:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/28 16:40:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:18:04 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,14 @@ int	ft_valid_map(t_solong **vars)
 			return (0);
 	}
 	if (epc[0] == 0 || epc[1] == 0 || epc[2] == 0)
+	{
 		ft_printf(COLOR_RED"Error\nMap missing E, P or C\n"COLOR_RED);
+		return (0);
+	}
 	else if (epc[1] > 1)
+	{
 		ft_printf(COLOR_RED"Error\nToo many P\n"COLOR_RED);
+		return (0);
+	}
 	return (1);
 }
