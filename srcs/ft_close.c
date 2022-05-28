@@ -6,11 +6,23 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:39:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/28 15:49:42 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 16:38:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	free_struct(void *mlx, void *ptr, char type)
+{
+	if (type == 'I' && ptr && mlx)
+		mlx_destroy_image(mlx, ptr);
+	else if (type == 'W' && ptr && mlx)
+		mlx_destroy_window(mlx, ptr);
+	else if (type == 'M' && mlx)
+		mlx_destroy_display(mlx);
+	else if (type == 'P' && ptr)
+		free(ptr);
+}
 
 int	red_cross_close(t_solong **vars)
 {
@@ -20,18 +32,18 @@ int	red_cross_close(t_solong **vars)
 
 static int	ft_close_img(t_solong **vars, int i)
 {
-	mlx_destroy_image((*vars)->mlx, (*vars)->bg);
-	mlx_destroy_image((*vars)->mlx, (*vars)->exit);
-	mlx_destroy_image((*vars)->mlx, (*vars)->wall);
-	mlx_destroy_image((*vars)->mlx, (*vars)->chest);
-	while (i < 10)
-		mlx_destroy_image((*vars)->mlx, (*vars)->cd[i++]);
-	i = 0;
-	while (i < 8)
-		mlx_destroy_image((*vars)->mlx, (*vars)->player[i++]);
-	i = 0;
-	while (i < 4)
-		mlx_destroy_image((*vars)->mlx, (*vars)->enemy[i++]);
+	free_struct((*vars)->mlx, (*vars)->bg, 'I');
+	free_struct((*vars)->mlx, (*vars)->exit, 'I');
+	free_struct((*vars)->mlx, (*vars)->wall, 'I');
+	free_struct((*vars)->mlx, (*vars)->chest, 'I');
+	while (++i < 10)
+		free_struct((*vars)->mlx, (*vars)->cd[i], 'I');
+	i = -1;
+	while (++i < 8)
+		free_struct((*vars)->mlx, (*vars)->player[i], 'I');
+	i = -1;
+	while (++i < 4)
+		free_struct((*vars)->mlx, (*vars)->enemy[i], 'I');
 	return (0);
 }
 
@@ -39,17 +51,16 @@ int	ft_close(t_solong **vars)
 {
 	int	i;
 
-	ft_close_img(vars, 0);
+	ft_close_img(vars, -1);
 	i = 0;
 	while ((*vars)->map[i])
-		free((*vars)->map[i++]);
-	free((*vars)->map);
-	free((*vars)->str);
-	mlx_destroy_window((*vars)->mlx, (*vars)->win);
-	mlx_destroy_display((*vars)->mlx);
-	ft_printf(COLOR_YELLOW "\rSteps : %i\n" COLOR_YELLOW,
-		(*vars)->count);
-	free((*vars)->mlx);
-	free(*vars);
+		free_struct(NULL, (*vars)->map[i++], 'P');
+	free_struct(NULL, (*vars)->map, 'P');
+	free_struct(NULL, (*vars)->str, 'P');
+	free_struct((*vars)->mlx, (*vars)->win, 'W');
+	free_struct((*vars)->mlx, NULL, 'M');
+	ft_printf(COLOR_YELLOW "\rSteps : %i\n" COLOR_YELLOW, (*vars)->count);
+	free_struct(NULL, (*vars)->mlx, 'P');
+	free_struct(NULL, (*vars), 'P');
 	return (0);
 }

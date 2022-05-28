@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 14:42:25 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 22:27:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 16:39:25 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,6 @@ static void	ft_anim_change(t_solong **vars)
 	if ((*vars)->anim_player >= 7)
 		(*vars)->anim_player = -1;
 	(*vars)->anim_player++;
-}
-
-static void	ft_reload(t_solong **vars)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while ((*vars)->map[++i])
-	{
-		j = -1;
-		while ((*vars)->map[i][++j] != '\0')
-		{
-			if ((*vars)->map[i][j] == '0')
-			{
-				mlx_put_image_to_window((*vars)->mlx, (*vars)->win,
-					(*vars)->bg, j * WIDTH, i * HEIGHT);
-			}
-			if ((*vars)->map[i][j] == '1')
-			{
-				mlx_put_image_to_window((*vars)->mlx, (*vars)->win,
-					(*vars)->wall, j * WIDTH, i * HEIGHT);
-			}
-		}
-	}
 }
 
 int	ft_anim(t_solong **vars)
