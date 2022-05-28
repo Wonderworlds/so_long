@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 23:23:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 14:43:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_solong {
 	void	*mlx;
 	void	*win;
 	char	**map;
+	char	*str;
 	int		x;
 	int		y;
 	int		width;
@@ -81,5 +82,6 @@ int		ft_move_p(t_solong **vars, int x, int y);
 int		ft_move_npc(t_solong **vars);
 int		ft_close(t_solong **vars);
 int		red_cross_close(t_solong **vars);
+int		ft_valid_map(t_solong **vars);
 
 #endif

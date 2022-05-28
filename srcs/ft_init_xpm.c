@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 23:45:03 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 23:19:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 12:54:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,7 @@ int	ft_init_tex(t_solong **vars)
 		return (0);
 	if (!ft_init_enemy(vars))
 		return (0);
-	ft_putstr_fd("HERE\n", 1);
 	if (!ft_init_cd(vars, 22, 24, 0))
 		return (0);
-	ft_putstr_fd("HERE\n", 1);
 	return (1);
 }

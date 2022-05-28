@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 17:16:50 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 22:45:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 12:53:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ static int	ft_dir_npc(t_solong **vars, int x, int y)
 
 	i = 0;
 	if (ft_check_npc(vars, x, y + 1))
+	{
 		(*vars)->map[x][y + 1] = 'N';
+		mlx_put_image_to_window((*vars)->mlx, (*vars)->win,
+			(*vars)->enemy[(*vars)->anim_enemy], y * WIDTH, x * HEIGHT);
+	}
 	else
 	{
 		while ((*vars)->map[x][++i])

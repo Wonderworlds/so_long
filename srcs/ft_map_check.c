@@ -6,54 +6,75 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 22:55:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 22:42:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 15:36:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	*ft_realloc(char *s1, char *s2, size_t len_s1, size_t len_s2)
+static int	ft_str_valid_char(char *str, char *validchar)
 {
-	char	*result;
-	size_t	i;
+	int	i;
 
-	result = malloc((len_s1 + len_s2 + 1) * sizeof(*result));
-	if (!result)
-		return (NULL);
-	i = 0;
-	while (i < len_s1)
+	while (*str)
 	{
-		result[i] = s1[i];
-		i++;
+		i = -1;
+		while (validchar[++i])
+		{
+			if (*str == validchar[i])
+				break ;
+		}
+		if (validchar[i] == '\0')
+			return (0);
+		str++;
 	}
-	free(s1);
-	while (len_s2--)
-		result[i++] = *(s2++);
-	result[i] = '\0';
-	return (result);
+	return (1);
 }
 
-char	*read_fd(int fd)
+static int	ft_valid_map1(t_solong **vars, char *str, int i, int *epc)
 {
-	char	buffer[BUFFER_SIZE];
-	char	*str;
-	int		r;
-
-	str = malloc(1);
-	if (!str)
-		return (NULL);
-	str[0] = '\0';
-	r = read(fd, buffer, BUFFER_SIZE);
-	if (r <= 0)
-		return (NULL);
-	while (r > 0)
+	if (ft_strlen(str) != (*vars)->x)
+		ft_printf(COLOR_RED"Error\nmap not rectangular\n"COLOR_RED);
+	else if (!ft_str_valid_char(str, "10ENPC"))
+		ft_printf(COLOR_RED"Error\nChar not valid\n"COLOR_RED);
+	if ((i == 0 || i == (*vars)->y) && !ft_str_valid_char(str, "1"))
+		ft_printf(COLOR_RED"Error\nmap not closed\n"COLOR_RED);
+	else if (str[0] != '1' || str[(*vars)->x - 1] != '1')
+		ft_printf(COLOR_RED"Error\nmap not closed\n"COLOR_RED);
+	else
 	{
-		str = ft_realloc(str, buffer, ft_strlen(str), (size_t)r);
-		if (!str)
-			return (NULL);
-		r = read(fd, buffer, BUFFER_SIZE);
-		if (r < 0)
-			return (NULL);
+		while (*str)
+		{
+			if (*str == 'E')
+				epc[0] += 1;
+			if (*str == 'P')
+				epc[1] += 1;
+			if (*str == 'C')
+				epc[2] += 1;
+			str++;
+		}
+		return (1);
 	}
-	return (str);
+	return (0);
+}
+
+int	ft_valid_map(t_solong **vars)
+{
+	int	i;
+	int	epc[3];
+
+	i = -1;
+	while (++i < 3)
+		epc[i] = 0;
+	i = -1;
+	while ((*vars)->map[++i])
+	{
+		if (!ft_valid_map1(vars, (*vars)->map[i], i, epc))
+			return (0);
+	}
+	if (epc[0] == 0 || epc[1] == 0 || epc[2] == 0)
+		ft_printf(COLOR_RED"Error\nMap missing E, P or C\n"COLOR_RED);
+	else if (epc[1] > 1)
+		ft_printf(COLOR_RED"Error\nToo many P\n"COLOR_RED);
+	return (1);
 }

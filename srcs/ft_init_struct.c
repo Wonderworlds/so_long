@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 23:19:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 23:20:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 14:43:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ static int	ft_init1(t_solong **vars)
 {
 	int	i;
 
+	(*vars)->x = ft_strlen((*vars)->map[0]);
 	i = 0;
 	while ((*vars)->map[i])
 		i++;
 	(*vars)->y = i;
+	if (!ft_valid_map(vars))
+		return (0);
 	(*vars)->count = 0;
 	(*vars)->c_count = 0;
 	(*vars)->anim_count = 0;
@@ -51,16 +54,12 @@ static int	ft_init1(t_solong **vars)
 
 int	ft_init(t_solong **vars, char *path)
 {
-	char	*tmp;
-
-	tmp = ft_get_map(path);
-	if (!tmp)
+	(*vars)->str = ft_get_map(path);
+	if (!(*vars)->str)
 		return (0);
-	(*vars)->map = ft_split(tmp, '\n');
-	free(tmp);
+	(*vars)->map = ft_split((*vars)->str, '\n');
 	if (!(*vars)->map)
 		return (0);
-	(*vars)->x = ft_strlen((*vars)->map[0]);
 	if (!ft_init1(vars))
 		return (0);
 	if (!ft_init_tex(vars))
