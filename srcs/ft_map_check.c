@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 22:55:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/28 15:36:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 15:58:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_valid_map1(t_solong **vars, char *str, int i, int *epc)
 		ft_printf(COLOR_RED"Error\nmap not rectangular\n"COLOR_RED);
 	else if (!ft_str_valid_char(str, "10ENPC"))
 		ft_printf(COLOR_RED"Error\nChar not valid\n"COLOR_RED);
-	if ((i == 0 || i == (*vars)->y) && !ft_str_valid_char(str, "1"))
+	else if ((i == 0 || i == (*vars)->y - 1) && !ft_str_valid_char(str, "1"))
 		ft_printf(COLOR_RED"Error\nmap not closed\n"COLOR_RED);
 	else if (str[0] != '1' || str[(*vars)->x - 1] != '1')
 		ft_printf(COLOR_RED"Error\nmap not closed\n"COLOR_RED);

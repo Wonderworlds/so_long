@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/27 23:20:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 16:10:24 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	main(int ac, char **av)
 	t_solong	*vars;
 
 	if (ac != 2)
+	{
+		ft_printf(COLOR_RED"Error\nMap missing\n"COLOR_RED);
 		return (0);
+	}
 	vars = malloc(sizeof(t_solong));
 	if (!vars)
 		return (0);
@@ -28,5 +31,5 @@ int	main(int ac, char **av)
 	mlx_loop_hook(vars->mlx, ft_anim, &vars);
 	mlx_loop(vars->mlx);
 	ft_close(&vars);
-	return (0);
+	return (1);
 }
