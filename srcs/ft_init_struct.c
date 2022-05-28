@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 23:19:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/28 16:08:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:41:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static char	*ft_get_map(char *path)
 	}
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
+	{
+		ft_printf(COLOR_RED"Error\nInvalid file\n"COLOR_RED);
 		return (NULL);
+	}
 	tmp = read_fd(fd);
 	close(fd);
 	return (tmp);
@@ -64,10 +67,7 @@ int	ft_init(t_solong **vars, char *path)
 {
 	(*vars)->str = ft_get_map(path);
 	if (!(*vars)->str)
-	{
-		ft_printf(COLOR_RED"Error\nInvalid file\n"COLOR_RED);
 		return (0);
-	}
 	(*vars)->map = ft_split((*vars)->str, '\n');
 	if (!(*vars)->map)
 		return (0);
