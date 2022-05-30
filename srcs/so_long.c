@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/05/28 17:20:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:05:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ int	main(int ac, char **av)
 	mlx_loop_hook(vars->mlx, ft_anim, &vars);
 	mlx_loop(vars->mlx);
 	ft_close(&vars, 'W');
-	return (1);
+	return (EXIT_SUCCESS);
 }
