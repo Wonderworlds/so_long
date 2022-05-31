@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 
 # include "../libft/Include/libft.h"
 

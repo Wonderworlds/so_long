@@ -17,7 +17,7 @@ SRCS_FILES	=	so_long.c key_event.c ft_move_npc.c ft_close.c ft_anim.c \
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
 OBJS		=	$(SRCS:%.c=%.o)
 NOBJS		=	$(SRCS:%.c=%.o)
-INCLUDE		=	includes/
+INCLUDE		=	includes/ -I/$(MLX_PATH)
 LIBFT_PATH	=	libft/
 MLX_PATH	=	minilibx-linux/
 LIBFT		=	libft.a
